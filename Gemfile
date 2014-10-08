@@ -30,3 +30,4 @@ end
 
 gem 'haml-rails'
 gem 'devise'
+gem 'figaro'
