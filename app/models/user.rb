@@ -1,6 +1,11 @@
 class User < ActiveRecord::Base
-  has_many :bookmarks, dependent: :destroy
-  
+  has_many :bookmarks
+  has_many :bookmarks, through: :likes
+
+  def liked(bookmark)
+    likes.where(bookmark_id: bookmark.id).first
+  end
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :omniauth_providers => [:facebook]
 

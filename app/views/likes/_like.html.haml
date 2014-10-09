@@ -1,0 +1,4 @@
+- if like = current_user.liked(bookmark)
+  Liked!
+- else
+  = link_to "Like", [bookmark, Like.new], class: 'btn btn-primary', method: :post

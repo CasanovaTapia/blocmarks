@@ -7,6 +7,7 @@ class BookmarksController < ApplicationController
 
   def show
     @bookmark = Bookmark.find(params[:id])
+    @like = @bookmark.likes.find(params[:like_id])
     authorize @bookmark
   end
 
