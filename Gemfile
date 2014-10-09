@@ -2,16 +2,16 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.6'
 
-group :production do 
+group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
 
-group :development do 
+group :development do
   gem 'sqlite3'
 end
 
-group :test do 
+group :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'capybara', '~> 2.3.0'
 end
@@ -24,10 +24,11 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 2.0'
 
-group :doc do 
+group :doc do
   gem 'sdoc', '~> 0.4.0'
 end
 
 gem 'haml-rails'
 gem 'devise'
 gem 'figaro'
+gem 'omniauth-facebook'
