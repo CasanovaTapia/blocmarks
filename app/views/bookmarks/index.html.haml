@@ -5,4 +5,4 @@
 - @bookmarks.each do |bookmark|
   .media
     .media-body
-      = bookmark.title
+      = link_to bookmark.title, bookmark.url
