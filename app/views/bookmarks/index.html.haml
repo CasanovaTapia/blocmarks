@@ -1,7 +1,16 @@
-%h1 All Bookmarks
+%h1 Bookmarks
 
-= link_to "New", new_bookmark_path, class: 'btn btn-success'
+- if policy(Bookmark.new).create?
+  = link_to "New", new_bookmark_path, class: 'btn btn-success'
 
+%h2 My Bookmarks
+- if current_user
+  - @my_bookmarks.each do |bookmark|
+    .media
+      .media-body
+        = link_to bookmark.title, bookmark.url  
+
+%h2 All Bookmarks
 - @bookmarks.each do |bookmark|
   .media
     .media-body

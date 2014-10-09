@@ -1,27 +1,33 @@
 class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
+    @my_bookmarks = current_user.bookmarks if current_user.present?
+    authorize @bookmarks
   end
 
   def show
     @bookmark = Bookmark.find(params[:id])
+    authorize @bookmark
   end
 
   def new
     @bookmark = Bookmark.new
+    authorize @bookmark
   end
 
   def edit
     @bookmark = Bookmark.find(params[:id])
+
   end
 
   def create
-    @bookmark = Bookmark.new(bookmark_params)
+    @bookmark = current_user.bookmarks.new(bookmark_params)
 
+    authorize @bookmark
     if @bookmark.save
       flash[:notice] = "Bookmark was saved."
       redirect_to bookmarks_path
-    else 
+    else
       flash[:error] = "Bookmark was not saved. Please try again."
       render :new
     end
@@ -30,6 +36,7 @@ class BookmarksController < ApplicationController
   def update
     @bookmark = Bookmark.find(params[:id])
 
+    authorize @bookmark
     if @bookmark.update_attributes(bookmark_params)
       flash[:notice] = "Bookmark was updated."
       redirect_to @bookmark
@@ -42,6 +49,7 @@ class BookmarksController < ApplicationController
   def destroy
     @bookmark = Bookmark.find(params[:id])
 
+    authorize @bookmark
     if @bookmark.destroy
       flash[:notice] = "Bookmark was deleted."
       redirect_to bookmarks_path
@@ -50,7 +58,7 @@ class BookmarksController < ApplicationController
       render :edit
     end
   end
-  
+
 
   private
 
