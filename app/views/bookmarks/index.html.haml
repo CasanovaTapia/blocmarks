@@ -1,0 +1,8 @@
+%h1 All Bookmarks
+
+= link_to "New", new_bookmark_path, class: 'btn btn-success'
+
+- @bookmarks.each do |bookmark|
+  .media
+    .media-body
+      = bookmark.title

@@ -1,0 +1,15 @@
+%h1 Edit Bookmark
+
+.row
+  .col-md-8
+    = form_for @bookmark do |f|
+      .form-group
+        = f.label :title
+        = f.text_field :title, class: 'form-control'
+      .form-group
+        = f.label :url
+        = f.text_field :url, class: 'form-control'
+      .form-group
+        = f.submit "Save", class: 'btn btn-success'
+
+    = link_to "Delete", @bookmark, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to delete this bookmark?' }
