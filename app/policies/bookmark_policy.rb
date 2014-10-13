@@ -1,8 +1,8 @@
 class BookmarkPolicy < ApplicationPolicy
   def index?
-    true
+    user.present?
   end
-  
+
   class Scope < Scope
     def resolve
       scope

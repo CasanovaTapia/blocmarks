@@ -3,7 +3,7 @@ class LikesController < ApplicationController
     @bookmark = Bookmark.find(params[:bookmark_id])
     @user = current_user
 
-    if @bookmark.likes << @user
+    if @bookmark.users << @user
       flash[:notice] = "Bookmark was liked."
       redirect_to bookmarks_path
     else

@@ -9,6 +9,7 @@
     .media
       .media-body
         = link_to bookmark.title, bookmark.url
+        = link_to "Delete", bookmark, method: :delete
 
 %h2 All Bookmarks
 - @bookmarks.each do |bookmark|

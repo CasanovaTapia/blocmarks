@@ -1,8 +1,9 @@
 class BookmarksController < ApplicationController
   def index
     @bookmarks = Bookmark.all
-    @my_bookmarks = current_user.bookmarks if current_user.present?
+    @my_bookmarks = current_user.bookmarks
     authorize @bookmarks
+    authorize @my_bookmarks
   end
 
   def show
@@ -23,6 +24,7 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = current_user.bookmarks.new(bookmark_params)
+    @bookmark.user_id = current_user.id
 
     authorize @bookmark
     if @bookmark.save
