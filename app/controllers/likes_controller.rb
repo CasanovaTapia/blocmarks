@@ -1,9 +1,9 @@
 class LikesController < ApplicationController
   def create
     @bookmark = Bookmark.find(params[:bookmark_id])
-    @user = current_user
+    like = current_user.likes.build(bookmark: @bookmark)
 
-    if @bookmark.users << @user
+    if like.save
       flash[:notice] = "Bookmark was liked."
       redirect_to bookmarks_path
     else

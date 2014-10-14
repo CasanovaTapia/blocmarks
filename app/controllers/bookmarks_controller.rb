@@ -1,4 +1,6 @@
 class BookmarksController < ApplicationController
+  before_filter :authenticate_user!
+
   def index
     @bookmarks = Bookmark.all
     @my_bookmarks = current_user.bookmarks
@@ -24,7 +26,6 @@ class BookmarksController < ApplicationController
 
   def create
     @bookmark = current_user.bookmarks.new(bookmark_params)
-    @bookmark.user_id = current_user.id
 
     authorize @bookmark
     if @bookmark.save

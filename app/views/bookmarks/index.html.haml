@@ -1,18 +1,24 @@
-%h1 Bookmarks
-
 - if policy(Bookmark.new).create?
   = link_to "New", new_bookmark_path, class: 'btn btn-success'
 
 %h2 My Bookmarks
-- if current_user
-  - @my_bookmarks.each do |bookmark|
-    .media
-      .media-body
-        = link_to bookmark.title, bookmark.url
-        = link_to "Delete", bookmark, method: :delete
+- @my_bookmarks.each do |bookmark|
+  .media
+    .media-body
+      = link_to bookmark.title, bookmark.url
+      = link_to "Delete", bookmark, method: :delete
+
+%h2 Liked Bookmarks
+- current_user.likes.each do |like|
+  - bookmark = Bookmark.find(like.bookmark_id)
+  .media
+    .media-body
+      = render partial: 'likes/like', locals: { bookmark: bookmark }
+      = link_to bookmark.title, bookmark.url
 
 %h2 All Bookmarks
 - @bookmarks.each do |bookmark|
   .media
     .media-body
+      = render partial: 'likes/like', locals: { bookmark: bookmark }
       = link_to bookmark.title, bookmark.url
