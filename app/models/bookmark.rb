@@ -4,6 +4,8 @@ class Bookmark < ActiveRecord::Base
   has_many :bookmarks_categories
   has_many :categories, through: :bookmarks_categories
 
+  attr_accessor :categories
+
   validates :title, presence: true
   validates :url, presence: true
 end

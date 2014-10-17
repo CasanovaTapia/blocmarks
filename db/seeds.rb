@@ -9,10 +9,20 @@
 end
 users = User.all
 
+# Create Categories
+20.times do
+  category = Category.new(
+    name: Faker::Lorem.word
+  )
+  category.save!
+end
+categories = Category.all
+
 # Create Bookmarks
 100.times do
   bookmark = Bookmark.new(
     user: users.sample,
+    categories: categories.sample,
     title: Faker::Lorem.sentence,
     url: Faker::Internet.url
   )
@@ -31,3 +41,4 @@ admin.save!
 puts "Seed finished"
 puts "#{User.count} users created"
 puts "#{Bookmark.count} bookmarks created"
+puts "#{Category.count} categories created"
