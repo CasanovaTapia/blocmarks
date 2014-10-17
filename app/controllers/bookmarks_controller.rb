@@ -28,6 +28,12 @@ class BookmarksController < ApplicationController
     @bookmark = current_user.bookmarks.new(bookmark_params)
 
     authorize @bookmark
+    params[:bookmark][:categories] = params[:bookmark][:categories].split(/[\s,]+/)
+    params[:bookmark][:categories].each do |cat|
+      category = Category.find_or_create_by(name: cat)
+      @bookmark.categories << category
+    end
+    
     if @bookmark.save
       flash[:notice] = "Bookmark was saved."
       redirect_to bookmarks_path
