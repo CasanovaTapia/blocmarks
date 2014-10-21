@@ -1,9 +1,22 @@
-<div class="jumbotron">
-  <h1>Blocmarks</h1>
-  <h4>Social Bookmarking with Email Integration</h4>
-  <% unless current_user %>
-    <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-primary facebook-button' %><br/>
-    <%= link_to "Sign in", new_user_session_path, class: 'btn btn-default' %>
-    <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-danger' %>
+<% if current_user %>
+  <h2>All Bookmarks</h2>
+  <% @categories.each do |category| %>
+    <h4><%= link_to "##{category.name}", category %></h4>
+    <% category.bookmarks.each do |bookmark| %>
+      <div class="media">
+        <div class="media-body">
+          <%= render partial: 'likes/like', locals: { bookmark: bookmark } %>
+          <%= link_to bookmark.url %>
+        </div>
+      </div>
+    <% end %>
   <% end %>
-</div>
+<% else %>
+  <div class="jumbotron">
+    <h1>Blocmarks</h1>
+    <h4>Social Bookmarking with Email Integration</h4>
+      <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-primary' %>
+      <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-danger' %></br>
+      <%= link_to "or Sign In with email", new_user_session_path, class: 'small' %>
+  </div>
+<% end %>

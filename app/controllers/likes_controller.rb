@@ -8,7 +8,7 @@ class LikesController < ApplicationController
       redirect_to bookmarks_path
     else
       flash[:error] = "Bookmark was not liked. Please try again."
-      redirect_to bookmarks_path
+      redirect_to root_path
     end
   end
 
