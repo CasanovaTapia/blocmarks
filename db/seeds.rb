@@ -22,11 +22,11 @@ categories = Category.all
 100.times do
   bookmark = Bookmark.new(
     user: users.sample,
-    categories: categories.sample,
-    title: Faker::Lorem.sentence,
+    # title: Faker::Lorem.sentence,
     url: Faker::Internet.url
   )
   bookmark.save!
+  bookmark.categories << categories.sample
 end
 bookmarks = Bookmark.all
 

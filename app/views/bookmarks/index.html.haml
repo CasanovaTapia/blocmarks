@@ -5,7 +5,7 @@
 - @my_bookmarks.each do |bookmark|
   .media
     .media-body
-      = link_to bookmark.title, bookmark.url
+      = link_to bookmark.url
       = link_to "Delete", bookmark, method: :delete
 
 %h2 Liked Bookmarks
@@ -14,11 +14,13 @@
   .media
     .media-body
       = render partial: 'likes/like', locals: { bookmark: bookmark }
-      = link_to bookmark.title, bookmark.url
+      = link_to bookmark.url
 
 %h2 All Bookmarks
-- @bookmarks.each do |bookmark|
-  .media
-    .media-body
-      = render partial: 'likes/like', locals: { bookmark: bookmark }
-      = link_to bookmark.title, bookmark.url
+- @categories.each do |category|
+  %h4= link_to "##{category.name}", category
+  - category.bookmarks.each do |bookmark|
+    .media
+      .media-body
+        = render partial: 'likes/like', locals: { bookmark: bookmark }
+        = link_to bookmark.url

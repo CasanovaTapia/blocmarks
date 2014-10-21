@@ -3,6 +3,7 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmarks = Bookmark.all
+    @categories = Category.all
     @my_bookmarks = current_user.bookmarks
     authorize @bookmarks
     authorize @my_bookmarks
@@ -21,7 +22,6 @@ class BookmarksController < ApplicationController
 
   def edit
     @bookmark = Bookmark.find(params[:id])
-
   end
 
   def create

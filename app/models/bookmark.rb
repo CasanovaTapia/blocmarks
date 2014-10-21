@@ -6,6 +6,6 @@ class Bookmark < ActiveRecord::Base
 
   attr_accessor :sorted_categories
 
-  validates :title, presence: true
+  # validates :title, presence: true
   validates :url, presence: true
 end
