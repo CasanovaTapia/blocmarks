@@ -10,4 +10,8 @@ class Bookmark < ActiveRecord::Base
 
   # validates :title, presence: true
   validates :url, presence: true
+
+  def self.tagged_with(name)
+    Category.find_by_name!(name).bookmarks
+  end
 end

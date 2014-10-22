@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
   before_filter :authenticate_user!
 
-  def index
+  def index    
     @bookmarks = Bookmark.all
     @categories = Category.all
     @my_bookmarks = current_user.bookmarks

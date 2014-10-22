@@ -12,7 +12,7 @@ class IncomingController < ApplicationController
     id = user.id
     email = user.email
 
-    bookmark = user.bookmarks.create!{ url: body }
+    bookmark = user.bookmarks.create( url: body )
 
     hashtags = params[:subject].scan(/#\w+/)
     hashtags.each do |hashtag|
