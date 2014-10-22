@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016115946) do
+ActiveRecord::Schema.define(version: 20141022025503) do
 
   create_table "bookmark_categories", force: true do |t|
     t.integer  "bookmark_id"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20141016115946) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "category_users", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "category_users", ["category_id"], name: "index_category_users_on_category_id"
+  add_index "category_users", ["user_id"], name: "index_category_users_on_user_id"
 
   create_table "likes", force: true do |t|
     t.integer  "user_id"

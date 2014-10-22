@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :likes
   has_many :bookmarks, dependent: :destroy
+  has_many :category_users
+  has_many :categories, through: :category_users
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:facebook]

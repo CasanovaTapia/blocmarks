@@ -1,7 +1,7 @@
 class BookmarksController < ApplicationController
   before_filter :authenticate_user!
 
-  def index    
+  def index
     @bookmarks = Bookmark.all
     @categories = Category.all
     @my_bookmarks = current_user.bookmarks
@@ -32,6 +32,7 @@ class BookmarksController < ApplicationController
     params[:bookmark][:sorted_categories].each do |cat|
       category = Category.find_or_create_by(name: cat)
       @bookmark.categories << category
+      category.users << current_user
     end
 
     if @bookmark.save
