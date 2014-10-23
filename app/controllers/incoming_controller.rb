@@ -9,6 +9,10 @@ class IncomingController < ApplicationController
     body = params['stripped-text']
     user = User.find_by_email(sender)
 
+    puts sender
+    puts user
+    puts body
+
     bookmark = user.bookmarks.create( url: body )
 
     hashtags = params[:subject].scan(/#\w+/)
