@@ -1,12 +1,12 @@
 class IncomingController < ApplicationController
 
-  skip_before_filter :verify_authenticity_token, only: [:create]
+  skip_before_action :verify_authenticity_token, only: [:create]
 
   def create
     puts "INCOMING PARAMS HERE: #{params}"
     sender = params['sender']
     subject = params['subject']
-    body = params['body']
+    body = params['stripped-text']
     user = User.find_by_email(sender)
 
     bookmark = user.bookmarks.create( url: body )
