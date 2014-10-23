@@ -8,8 +8,6 @@ class IncomingController < ApplicationController
     subject = params['subject']
     body = params['body']
     user = User.find_by_email(sender)
-    id = user.id
-    email = user.email
 
     bookmark = user.bookmarks.create( url: body )
 
