@@ -7,20 +7,22 @@ class IncomingController < ApplicationController
     sender = params['sender']
     subject = params['subject']
     body = params['stripped-text']
-    user = User.find_by_email(sender)
+    @user = User.find_by_email(sender)
 
-    puts sender
-    puts user
-    puts body
-
-    bookmark = user.bookmarks.create( url: body )
+    @bookmark = @user.bookmarks.new( url: body )
 
     hashtags = params[:subject].scan(/#\w+/)
     hashtags.each do |hashtag|
       hashtag.sub!('#', '')
       category = Category.find_or_create_by(name: hashtag)
-      bookmark.categories << category
+      @bookmark.categories << category
+      @user.categories << category
     end
+
+    @bookmark.save
+
+    puts @bookmark.url
+    puts @bookmark.categories
 
     head 200
   end
