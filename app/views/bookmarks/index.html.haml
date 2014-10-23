@@ -1,7 +1,6 @@
+%h2 My Bookmarks
 - if policy(Bookmark.new).create?
   = link_to "New", new_bookmark_path, class: 'btn btn-success'
-
-%h2 My Bookmarks
 - current_user.categories.uniq.each do |category|
   %h4= link_to "##{category.name}", category
   - category.bookmarks.where(user_id: current_user.id).each do |bookmark|

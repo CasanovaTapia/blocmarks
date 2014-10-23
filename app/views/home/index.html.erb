@@ -12,11 +12,25 @@
     <% end %>
   <% end %>
 <% else %>
-  <div class="jumbotron">
+  <div class="jumbotron text-center">
     <h1>Blocmarks</h1>
     <h4>Social Bookmarking with Email Integration</h4>
       <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook), class: 'btn btn-primary' %>
       <%= link_to "Sign up", new_user_registration_path, class: 'btn btn-danger' %></br>
       <%= link_to "or Sign In with email", new_user_session_path, class: 'small' %>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Social Bookmarking</h4>
+      <p>Peruse other user's bookmarks and maintain your own categorized bookmarks.</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Email Integration</h4>
+      <p>Add your bookmarks via email to bookmark@app30906757.mailgun.org, with hashtag categories in the subject line and URL in the email body.</p>
+    </div>
+    <div class="col-md-4">
+      <h3>Facebook Authorization</h4>
+      <p>Sign up with your Facebook Account for convenience. Blocmarks will never post on your Facebook account.</p>
+    </div>
   </div>
 <% end %>

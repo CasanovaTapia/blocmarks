@@ -32,7 +32,7 @@ class BookmarksController < ApplicationController
     params[:bookmark][:sorted_categories].each do |cat|
       category = Category.find_or_create_by(name: cat)
       @bookmark.categories << category
-      category.users << current_user
+      current_user.categories << category
     end
 
     if @bookmark.save
