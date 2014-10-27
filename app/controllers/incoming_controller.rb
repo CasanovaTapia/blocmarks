@@ -19,7 +19,7 @@ class IncomingController < ApplicationController
       @user.categories << category
     end
 
-    @bookmark.save
+    @bookmark.save!
 
     puts @bookmark.url
     puts @bookmark.categories
